@@ -3,10 +3,10 @@ export const switchHome = (navigate) =>{
     navigate("/")
 }
 
-export const switchPekedex = (navigate) => {
+export const switchPokedex = (navigate) => {
     navigate ("/pokedex")
 }
 
-export const switchDatail = (navigate) => {
+export const switchDetail = (navigate) => {
     navigate("/detail")
 }
