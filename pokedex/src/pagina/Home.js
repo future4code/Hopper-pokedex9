@@ -11,10 +11,12 @@ display:flex;
 justify-content:center;
 
 background-color:#006494;
+width: 100vw;
 
 img{
     display:flex;
-  width:15vw;
+  width:10vw;
+  margin: 20px;
     
 }
 
