@@ -6,9 +6,13 @@ const ImgContainer = styled.div`
 display:flex;
 justify-content: center;
 img{
-    
-    width:15vw;
-    height: 15vh;
+    background: white;
+    border-radius: 50%;
+    min-width: 10vw;
+    max-width: 12vw;
+    min-height: 10vh;
+    max-height: 15vh;
+    border: 10px solid black;
 }
 `
 

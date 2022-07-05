@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components"
 import { switchDetail } from "./switchPage"
 import { useNavigate } from "react-router-dom"
 import { getPoke } from "../components/importPoke"
 import ImgPoke from "./ImagePoke"
-import pokeWall from    "../img/pokewall.jpg"
+import { ContextGlobal } from "../Global/ContextGlobal"
+// import pokeWall from "../img/pokewall.jpg"
+
 const MainContainer = styled.div`
 display:flex;
 flex-wrap:wrap;
+justify-content: center;
 
 `
 const CardPoke = styled.div`
@@ -15,25 +18,46 @@ display:flex;
 flex-direction:column;
 justify-content: center;
 align-items: center;
-border:inset;
+border: inset;
 margin: 15px;
-padding: 9%;
-width: 1vw;
-height: 2vh;
-background-image: url(${pokeWall});
+padding: 170px;
+min-width: 0.5vw;
+max-width: 0.1vw ;
+min-height: 1vh;
+height: 10vh;
+background-color: red;
+background-repeat: no-repeat;
 
-`
-const ButtonsCard = styled.div`
-display: flex;
-
-button{
-   
+> h4 {
+    margin: 10px;
+    text-align: center;
+    width: 100px;
+    background-color: white;
+    border: 1px solid black;
 }
 
 `
+
+const ButtonsCard = styled.div`
+display: flex;
+
+> button {
+    border-radius: 20px;
+    padding: 10px;
+   margin: 10px;
+   background: white;
+
+   :hover{
+    color: white;
+    background: black;
+   }
+}
+`
+
 export default function Card() {
     const [poke, setPoke] = useState([])
-    
+    const {  setIdPokemon } = useContext(ContextGlobal)
+
     useEffect(() => {
 
         getPoke().then((res) => {
@@ -44,32 +68,40 @@ export default function Card() {
         [])
 
     const navigate = useNavigate()
+
+    const onClickDetalhes= (index) => {
+        switchDetail(navigate)
+        setIdPokemon(index+1)
+        localStorage.setItem("idPokemon", index+1)
+    }
+
+
     return (
 
         <MainContainer>
 
-           
+
             {poke.map((newPoke, index) => {
 
                 return (
-                    
-                    <CardPoke>
-                       
-                      
+
+                    <CardPoke key={index}>
+
+
                         <ImgPoke id={index} />
                         <h4> {newPoke.name}</h4>
                         <ButtonsCard>
-                            <button>Adicinar</button>
-                            <button onClick={() => switchDetail(navigate)}>Ver Detalhes</button>
+                            <button>Adicionar</button>
+                            <button onClick={() => onClickDetalhes(index)}>Ver Detalhes</button>
                         </ButtonsCard>
-                       
-                        
+
+
 
                     </CardPoke>
                 )
 
             })}
-        
+
         </MainContainer>
     )
 
