@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { getPoke } from "../components/importPoke"
 import ImgPoke from "./ImagePoke"
 import { ContextGlobal } from "../Global/ContextGlobal"
+import axios from "axios"
 // import pokeWall from "../img/pokewall.jpg"
 
 const MainContainer = styled.div`
@@ -57,7 +58,7 @@ display: flex;
 
 export default function Card() {
     const [poke, setPoke] = useState([])
-    const { setIdPokemon } = useContext(ContextGlobal)
+    const { setIdPokemon, setArrayPokedex, arrayPokedex } = useContext(ContextGlobal)
 
     useEffect(() => {
 
@@ -76,6 +77,19 @@ export default function Card() {
         localStorage.setItem("idPokemon", index + 1)
     }
 
+    const onClickAdd = (index) =>{
+                axios.get(`https://pokeapi.co/api/v2/pokemon/${index+ 1}`, {
+        
+                }).then((resp) => {
+                    if(arrayPokedex === resp.data){
+                        console.log("Esse Pokemon já existe na Pokedex")
+                    }else {
+                        const novoPokemon = [...arrayPokedex, resp.data]
+                        setArrayPokedex(novoPokemon)
+                    }
+                })
+        }
+        console.log(arrayPokedex)
 
     return (
 
@@ -92,7 +106,7 @@ export default function Card() {
                         <ImgPoke id={index} />
                         <h4> {newPoke.name}</h4>
                         <ButtonsCard>
-                            <button>Adicionar</button>
+                            <button onClick={() => onClickAdd(index)}>Adicionar</button>
                             <button onClick={() => onClickDetalhes(index)}>Ver Detalhes</button>
                         </ButtonsCard>
 
