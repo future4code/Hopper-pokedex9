@@ -10,6 +10,7 @@ import { ContextGlobal } from "../Global/ContextGlobal"
 const MainContainer = styled.div`
 display:flex;
 flex-wrap:wrap;
+
 justify-content: center;
 
 `
@@ -56,7 +57,7 @@ display: flex;
 
 export default function Card() {
     const [poke, setPoke] = useState([])
-    const {  setIdPokemon } = useContext(ContextGlobal)
+    const { setIdPokemon } = useContext(ContextGlobal)
 
     useEffect(() => {
 
@@ -69,10 +70,10 @@ export default function Card() {
 
     const navigate = useNavigate()
 
-    const onClickDetalhes= (index) => {
+    const onClickDetalhes = (index) => {
         switchDetail(navigate)
-        setIdPokemon(index+1)
-        localStorage.setItem("idPokemon", index+1)
+        setIdPokemon(index + 1)
+        localStorage.setItem("idPokemon", index + 1)
     }
 
 
