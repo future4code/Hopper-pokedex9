@@ -1,7 +1,7 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Home from "../pagina/Home"
 import Detail from  "../pagina/details/Detail"
-import Pokedex from "../pagina/pokedex/Pokedex"
+import Pokedex from "../pagina/Pokedex"
 import { useState } from "react"
 
 export default function Router(){
