@@ -56,9 +56,12 @@ display: flex;
 }
 `
 
-export default function Card() {
+export default function Card(props) {
     const [poke, setPoke] = useState([])
     const { setIdPokemon } = useContext(ContextGlobal)
+
+     const {setPokedex,pokedex} = useContext(ContextGlobal)
+   // const [namePoke, setNamePoke] = useState("")
 
     useEffect(() => {
         getPoke().then((res) => {
@@ -69,44 +72,107 @@ export default function Card() {
 
 
 
+      
+
     const navigate = useNavigate()
 
     const onClickDetalhes = (index) => {
         switchDetail(navigate)
         setIdPokemon(index + 1)
         localStorage.setItem("idPokemon", index + 1)
+
+    }
+
+    const addPoke = ( poke , number) => {
+        
+       let  newpoke = {
+            name: poke,
+            index: number
+            
+        }
+         
+
+        return setPokedex([...pokedex, newpoke ])
+    }
+
+    const removePoke = (poke) =>{
+      let newList =  pokedex.filter((pokeRemove)=>pokeRemove.name !== poke )
+     
+        
+        
+      return  setPokedex([...newList])
+        
+      
+    
+      
     }
 
 
+const pokemon = (render) =>{
+   
+
+    if (render === "pokedex") {
+       
+       
+        let myPokedex = pokedex.map((newPoke, index) => {
+            return (
+                <CardPoke key={index}>
 
 
-    return (
-
-        <MainContainer>
-
-
-            {poke.map((newPoke, index) => {
-
-                return (
-
-                    <CardPoke key={index}>
-
-
-                        <ImgPoke id={index} />
-                        <h4> {newPoke.name}</h4>
-                        <ButtonsCard>
-                            <button>Adicionar</button>
-                            <button onClick={() => onClickDetalhes(index)}>Ver Detalhes</button>
-                        </ButtonsCard>
+                    <ImgPoke id={newPoke.index} />
+                    <h4> {newPoke.name}</h4>
+                    <ButtonsCard>
+                        <button onClick={() => removePoke(newPoke.name)}>Delete</button>
+                        <button onClick={() => onClickDetalhes(newPoke.index)}>Ver Detalhes</button>
+                    </ButtonsCard>
 
 
 
-                    </CardPoke>
-                )
+                </CardPoke>
+            )
+        });
 
-            })}
+     return    myPokedex
 
-        </MainContainer>
-    )
+    } else {
+        
+        let homePoke = poke.map((newPoke, index) => {
+                if(!pokedex.find((name)=>name.name === newPoke.name ))
+            return (
+                <CardPoke key={index}>
+
+
+                    <ImgPoke id={index} />
+                    <h4> {newPoke.name}</h4>
+                    <ButtonsCard>
+                        <button onClick={() => addPoke(newPoke.name,index)}>Adicionar</button>
+                        <button onClick={() => onClickDetalhes(index)}>Ver Detalhes</button>
+                    </ButtonsCard>
+
+                </CardPoke>
+            )
+        })
+       
+  return  homePoke
+    }
+  
+}
+
+return(
+    <MainContainer>
+        { pokemon(props.name)}
+    </MainContainer>
+)
+       
 
 }
+
+
+
+   
+
+
+
+
+
+

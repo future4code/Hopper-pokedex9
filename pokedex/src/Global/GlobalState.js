@@ -3,10 +3,10 @@ import { ContextGlobal } from "./ContextGlobal"
 
 export const GlobalState = (props) => {
   const [idPokemon, setIdPokemon] = useState()
-  const [arrayPokedex, setArrayPokedex] = useState([])
 
-
-  return <ContextGlobal.Provider value={{ idPokemon, setIdPokemon, arrayPokedex, setArrayPokedex}}>
+  const [pokedex , setPokedex] = useState([])
+  
+  return <ContextGlobal.Provider value={{ idPokemon, setIdPokemon ,pokedex,setPokedex,}}>
     {props.children}
   </ContextGlobal.Provider>
 }
