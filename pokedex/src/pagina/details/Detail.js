@@ -37,7 +37,6 @@ export default function Detail() {
         tiposPokemon(segundoTipo,setImagemSegundo)
     })
 
-
     return (
         <div>
             <Conteiner>
@@ -48,6 +47,14 @@ export default function Detail() {
                 <Imagens>
                     <img src={pokemon.sprites && pokemon.sprites.back_default} alt="" />
                 </Imagens>
+
+                <Elementos>
+                    <h1>TIPO</h1>
+                    <div>
+                        <img src={imagemUm} alt="" />
+                        <img src={imagemSegundo} alt="" />
+                    </div>
+                </Elementos>
 
                 <Detalhes>
 
@@ -69,17 +76,9 @@ export default function Detail() {
                     <p>{pokemon.moves && pokemon.moves[1].move.name}</p>
                     <p>{pokemon.moves && pokemon.moves[2].move.name}</p>
                     <p>{pokemon.moves && pokemon.moves[3].move.name}</p>
-                    <p>{pokemon.moves && pokemon.moves[4].move.name}</p>
+                    {/* <p>{pokemon.moves && pokemon.moves[4].move.name}</p> */}
 
                 </Detalhes>
-
-                <Elementos>
-                    <h1>TIPO</h1>
-                    <div>
-                        <img src={imagemUm} alt="" />
-                        <img src={imagemSegundo} alt="" />
-                    </div>
-                </Elementos>
 
                 <BotaoPrimario onClick={() => switchHome(navigate)}>
                     <p>VOLTAR PARA HOME</p>
