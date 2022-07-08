@@ -22,11 +22,12 @@ const [imagePoke , setImagePoke] = useState("")
 useEffect(()=>{
     imgPoke(props.id)
 },[])
-const imgPoke = (id) =>{
+ const imgPoke = (id) =>{
     
     axios.get(`https://pokeapi.co/api/v2/pokemon/${id + 1}`,{
 
     }).then((res)=>{
+        
         setImagePoke(res.data.sprites.front_default)
     })
 }
