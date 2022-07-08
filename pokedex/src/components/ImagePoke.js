@@ -25,20 +25,18 @@ img{
 export default function ImgPoke(props) {
     const [imagePoke, setImagePoke] = useState("")
 
-    useEffect(() => {
+useEffect(()=>{
+    imgPoke(props.id)
+},[])
+ const imgPoke = (id) =>{
+    
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${id + 1}`,{
 
-        imgPoke(props.id)
-
-    },[])
-
-    const imgPoke = (id) => {
-
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${id + 1}`, {
-
-        }).then((res) => {
-            setImagePoke(res.data.sprites.front_default)
-        })
-    }
+    }).then((res)=>{
+        
+        setImagePoke(res.data.sprites.front_default)
+    })
+}
     return (
 
         <ImgContainer>
