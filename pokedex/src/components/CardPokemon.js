@@ -107,7 +107,7 @@ export default function Card(props) {
     let list = localStorage.getItem("list")
     let pokeList = JSON.parse(list)
     
-    const teste = () => {
+    const testePokedex = () => {
         if (pokedex >= pokeList) {
 
             return pokedex
@@ -124,7 +124,7 @@ export default function Card(props) {
         if (render === "pokedex") {
 
 
-            let myPokedex = teste().map((newPoke, index) => {
+            let myPokedex = testePokedex().map((newPoke, index) => {
                 return (
                     <CardPoke key={index}>
 
