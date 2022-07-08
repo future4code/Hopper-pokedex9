@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"
 import styled from "styled-components";
 
@@ -12,12 +12,18 @@ img{
     max-width: 12vw;
     min-height: 10vh;
     max-height: 15vh;
-    border: 10px solid black;
+    border: 6px solid black;
+}
+@media (min-width: 2500px) and (max-width:3500px){
+    img {
+        min-width: 7vw;
+        max-width: 12vw;
+    }
 }
 `
 
-export default function ImgPoke(props){
-const [imagePoke , setImagePoke] = useState("")
+export default function ImgPoke(props) {
+    const [imagePoke, setImagePoke] = useState("")
 
 useEffect(()=>{
     imgPoke(props.id)
@@ -31,12 +37,12 @@ useEffect(()=>{
         setImagePoke(res.data.sprites.front_default)
     })
 }
-return(
+    return (
 
-    <ImgContainer>
-    <img src={imagePoke} />
-    </ImgContainer>
-    
-)
+        <ImgContainer>
+            <img src={imagePoke} />
+        </ImgContainer>
+
+    )
 
 }

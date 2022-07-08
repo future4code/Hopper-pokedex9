@@ -2,14 +2,16 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components"
 import { switchDetail, switchHome, switchPokedex } from "./switchPage"
 import { useNavigate } from "react-router-dom"
-import { getPoke } from "../components/importPoke"
+import { getPoke, deletePoke } from "../components/importPoke"
 import ImgPoke from "./ImagePoke"
 import { ContextGlobal } from "../Global/ContextGlobal"
+import axios from "axios"
 // import pokeWall from "../img/pokewall.jpg"
 
 const MainContainer = styled.div`
 display:flex;
 flex-wrap:wrap;
+
 justify-content: center;
 
 `
@@ -57,16 +59,16 @@ display: flex;
 export default function Card(props) {
     const [poke, setPoke] = useState([])
     const { setIdPokemon } = useContext(ContextGlobal)
-    const { setPokedex, pokedex } = useContext(ContextGlobal)
-    
-    useEffect(() => {
+    const { setPokedex, pokedex } = useContext(ContextGlobal)   
 
+    useEffect(() => {
         getPoke().then((res) => {
             setPoke(res.data.results)
         })
 
-    },
-        [])
+    },[])
+
+
 
 
 
@@ -76,6 +78,7 @@ export default function Card(props) {
         switchDetail(navigate)
         setIdPokemon(index + 1)
         localStorage.setItem("idPokemon", index + 1)
+
     }
 
     const addPoke = (poke, number) => {
