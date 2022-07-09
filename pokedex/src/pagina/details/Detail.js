@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { switchHome } from "../../components/switchPage"
+import { switchHome, switchPokedex } from "../../components/switchPage"
 import { useNavigate } from "react-router-dom"
 import { Conteiner, Imagens, Detalhes, Elementos, BotaoPrimario, BotaoSegundario } from './Styled'
 import { tiposPokemon } from "./TipoPokemon"
@@ -84,7 +84,7 @@ export default function Detail() {
                     <p>VOLTAR PARA HOME</p>
                 </BotaoPrimario>
 
-                <BotaoSegundario>
+                <BotaoSegundario onClick={() => switchPokedex(navigate)}>
                     <p>IR PARA POKEDEX</p>
                 </BotaoSegundario>
             </Conteiner>
