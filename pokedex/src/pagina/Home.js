@@ -42,7 +42,7 @@ justify-content: center;
 align-items: center;
 margin: 30px;
 width: 10%;
-height: 5%;
+height: 5vh;
 border-radius: 50px;
 background-color: transparent;
 position: absolute;
@@ -50,7 +50,8 @@ left: 0;
 cursor: pointer;
 border: 2px solid white;
 :hover {
-    background-color: black;
+    color: white;
+    border: 4px solid white;
 }
 > p {
     color: white;
